@@ -11,7 +11,7 @@ const Work = () => {
         Welcome to my portfolio! Explore collection of my projects showcasing my
         skills and experience.
       </p>
-      <div className="grid grid-cols-auto my-10 gap-5">
+      <div className="grid grid-cols-auto my-10 gap-5 dark:text-black">
         {workData.map((project, index) => (
           <div
             key={index}
