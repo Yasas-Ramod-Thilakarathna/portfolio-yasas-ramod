@@ -11,8 +11,9 @@ export default {
     extend: {
       colors: {
         lightHover: "#fcf4ff",
-        darkHover: "#2a004a",
-        darkTheme: "#11001F",
+        darkHover: "#212121",
+        darkTheme: "#212121",
+        orangehover: "#fe684d",
       },
       fontFamily: {
         Outfit: ["Outfit", "sans-serif"],
@@ -21,6 +22,7 @@ export default {
       boxShadow: {
         black: "4px 4px 0 #000",
         white: "4px 4px 0 #fff",
+        orange: "4px 4px 0 #fe684d",
       },
       gridTemplateColumns: {
         auto: "repeat(auto-fit, minmax(200px, 1fr))",
