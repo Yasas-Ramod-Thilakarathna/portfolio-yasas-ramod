@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { assets } from "@/assets/assets";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const Header = () => {
   return (
@@ -24,7 +24,11 @@ const Header = () => {
         className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo"
       >
         Hi! I'm Yasas Ramod
-        <Image src={assets.hand_icon} alt="handIcon" className="w-6" />
+        <img
+          src={assets.hand_icon_url}
+          alt="Hand Waving"
+          className="w-7 pb-1 "
+        />
       </motion.h3>
       <motion.h1
         initial={{ y: -30, opacity: 0 }}
@@ -54,7 +58,7 @@ const Header = () => {
           <Image
             src={assets.right_arrow_white}
             alt="Contact arrow"
-            className="w-4"
+            className="w-4 mx-auto my-auto"
           />
         </motion.a>
         <motion.a
@@ -69,7 +73,7 @@ const Header = () => {
           <Image
             src={assets.download_icon}
             alt="Contact arrow"
-            className="w-4 h-6"
+            className="w-4 my-auto py-1"
           />
         </motion.a>
       </div>

@@ -1,7 +1,7 @@
 import { assets, workData } from "@/assets/assets";
 import React from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const Work = () => {
   return (
@@ -34,30 +34,73 @@ const Work = () => {
         transition={{ duration: 0.5, delay: 0.7 }}
         className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo"
       >
-        Welcome to my portfolio! Explore collection of my projects showcasing my
-        skills and experience.
+        Welcome to my portfolio! Explore a collection of my projects showcasing
+        my skills and experience.
       </motion.p>
+      {/* Updated grid layout */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.9 }}
-        className="grid grid-cols-auto my-10 gap-5 dark:text-black"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-10"
       >
-        {workData.map((project, index) => (
+        {workData.map((project, id) => (
           <motion.div
             whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-            key={index}
-            className="aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group"
-            style={{ backgroundImage: `url(${project.bgImage})` }}
+            key={id}
+            className="flex flex-col justify-between h-full border border-gray-400 rounded-lg px-6 py-6 cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-orange hover:border-[#fe684d] hover:bg-lightHover dark:hover:bg-darkHover"
           >
-            <div className="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between group-hover:bottom-7 duration-500">
+            {/* Image Section */}
+            <div className="sm:w-full">
+              <Image
+                src={project.bgImage}
+                alt={project.title}
+                width={400}
+                height={200}
+                className="w-full h-40 object-cover rounded-lg mb-6"
+              />
+            </div>
+
+            {/* Content Section */}
+            <div className="flex flex-col justify-between flex-grow">
               <div>
-                <h2 className="font-semibold">{project.title}</h2>
-                <p className="text-sm text-grey-700">{project.description}</p>
+                <h3 className="text-lg my-4 text-grey-700 dark:text-white">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-grey-600 leading-5 dark:text-white/80">
+                  {project.description}
+                </p>
+                <ul className="flex flex-wrap gap-2 mt-4 mb-4">
+                  {project.skills?.map((skill, skillId) => (
+                    <li
+                      key={skillId}
+                      className="text-sm font-medium bg-gray-800 text-white rounded-full px-4 py-1"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                <Image src={assets.send_icon} alt="send icon" className="w-5" />
+
+              {/* Source Button */}
+              <div className="flex justify-start sm:justify-end mt-auto">
+                {project.source && (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    className="py-2 px-6 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full hover:bg-black duration-500 dark:bg-transparent dark:border-[0.5px] dark:hover:bg-darkHover dark:text-white/90"
+                    onClick={() => window.open(project.source, "_blank")}
+                  >
+                    Source
+                    <Image
+                      src={assets.right_arrow_white}
+                      alt="source"
+                      width={16}
+                      height={16}
+                      className="w-4"
+                    />
+                  </motion.button>
+                )}
               </div>
             </div>
           </motion.div>

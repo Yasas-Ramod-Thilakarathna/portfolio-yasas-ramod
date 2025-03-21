@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { assets, infoList, toolsData } from "@/assets/assets";
-import { motion } from "motion/react";
+import { assets, infoList, toolsData, socialIcons } from "@/assets/assets";
+import { motion } from "framer-motion";
 
 const About = ({ isDarkMode }) => {
   return (
@@ -41,7 +41,7 @@ const About = ({ isDarkMode }) => {
             transition={{ duration: 0.6 }}
             src={assets.user_image}
             alt="user"
-            className="w-full rounded-3xl mx-auto"
+            className="w-full rounded-3xl mx-auto "
           />
         </motion.div>
         <motion.div
@@ -58,10 +58,66 @@ const About = ({ isDarkMode }) => {
             Information Technology specialized in Software Engineering from Sri
             Lanka Institute of Information Technology(SLIIT).
           </p>
-          <motion.ul
+          <motion.h4
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
+            className="my-auto text-gray-700 font-Ovo dark:text-white"
+          >
+            My socials
+          </motion.h4>
+
+          <motion.ul
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.5 }}
+            className="flex items-center gap-3 sm:gap-5"
+          >
+            {/* Social Media Buttons */}
+            <motion.ul
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.5 }}
+              className="flex justify-center my-10 space-x-5"
+            >
+              {Object.entries(socialIcons).map(
+                ([key, { icon, url }], index) => (
+                  <li key={index}>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-black/80 hover:text-orange-600 dark:hover:text-orange-600 dark:text-white"
+                    >
+                      {icon}
+                    </a>
+                  </li>
+                )
+              )}
+            </motion.ul>
+            {/* {toolsData.map((tool, index) => (
+              <motion.li
+                whileHover={{ scale: 1.1 }}
+                className="flex items-center justify-center my-6 w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500"
+                key={index}
+              >
+                <Image src={tool} alt={tool.title} className="w-5 sm:w-7" />
+              </motion.li>
+            ))} */}
+            {/* {toolsData.map((tool, index) => (
+              <motion.li
+                whileHover={{ scale: 1.1 }}
+                className="flex items-center justify-center my-6 w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500"
+                key={index}
+              >
+                <Image src={tool} alt={tool.title} className="w-5 sm:w-7" />
+              </motion.li>
+            ))} */}
+          </motion.ul>
+          <motion.ul
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.3 }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl"
           >
             {infoList.map(({ icon, iconDark, title, description }, index) => (
@@ -81,31 +137,6 @@ const About = ({ isDarkMode }) => {
                 <p className="text-gray-600 text-sm dark:text-white/80">
                   {description}
                 </p>
-              </motion.li>
-            ))}
-          </motion.ul>
-          <motion.h4
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.3 }}
-            className="my-6 text-gray-700 font-Ovo dark:text-white"
-          >
-            Tools I use
-          </motion.h4>
-
-          <motion.ul
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.5 }}
-            className="flex items-center gap-3 sm:gap-5"
-          >
-            {toolsData.map((tool, index) => (
-              <motion.li
-                whileHover={{ scale: 1.1 }}
-                className="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500"
-                key={index}
-              >
-                <Image src={tool} alt={tool.title} className="w-5 sm:w-7" />
               </motion.li>
             ))}
           </motion.ul>
